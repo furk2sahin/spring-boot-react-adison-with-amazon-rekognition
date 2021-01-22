@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ce2103c8-8102-4c5b-b4ec-b20d72d1ebe2" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1lmx9MbgGXETVddYMtyyAT8PBRN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/API" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager" selected="Application.AdisonApplication">
+    <configuration name="AdisonApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.furkannsahin.adison.AdisonApplication" />
+      <module name="adison" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.furkannsahin.adison.amazon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdisonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="adison" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.furkannsahin.adison.AdisonApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AdisonApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce2103c8-8102-4c5b-b4ec-b20d72d1ebe2" name="Default Changelist" comment="" />
+      <created>1608215916057</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608215916057</updated>
+      <workItem from="1608215921375" duration="148000" />
+      <workItem from="1608216397051" duration="3707000" />
+      <workItem from="1610900087081" duration="3524000" />
+      <workItem from="1610983416340" duration="5562000" />
+      <workItem from="1611081711211" duration="1510000" />
+      <workItem from="1611251333332" duration="10997000" />
+      <workItem from="1611323724179" duration="1801000" />
+      <workItem from="1611325569895" duration="2912000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.cmd" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="422" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611324158634">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state x="422" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1034@0.0.1920.1034" timestamp="1611324158634" />
+    <state x="740" y="272" key="FileChooserDialogImpl" timestamp="1611331518033">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state x="740" y="272" key="FileChooserDialogImpl/0.0.1920.1034@0.0.1920.1034" timestamp="1611331518033" />
+    <state width="1877" height="326" key="GridCell.Tab.0.bottom" timestamp="1611331626535">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="326" key="GridCell.Tab.0.bottom/0.0.1920.1034@0.0.1920.1034" timestamp="1611331626535" />
+    <state width="1860" height="326" key="GridCell.Tab.0.bottom/1920.0.1920.1034/0.0.1920.1034@0.0.1920.1034" timestamp="1611264135101" />
+    <state width="1877" height="326" key="GridCell.Tab.0.center" timestamp="1611331626535">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="326" key="GridCell.Tab.0.center/0.0.1920.1034@0.0.1920.1034" timestamp="1611331626535" />
+    <state width="1860" height="326" key="GridCell.Tab.0.center/1920.0.1920.1034/0.0.1920.1034@0.0.1920.1034" timestamp="1611264135101" />
+    <state width="1877" height="326" key="GridCell.Tab.0.left" timestamp="1611331626535">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="326" key="GridCell.Tab.0.left/0.0.1920.1034@0.0.1920.1034" timestamp="1611331626535" />
+    <state width="1860" height="326" key="GridCell.Tab.0.left/1920.0.1920.1034/0.0.1920.1034@0.0.1920.1034" timestamp="1611264135101" />
+    <state width="1877" height="326" key="GridCell.Tab.0.right" timestamp="1611331626535">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="326" key="GridCell.Tab.0.right/0.0.1920.1034@0.0.1920.1034" timestamp="1611331626535" />
+    <state width="1860" height="326" key="GridCell.Tab.0.right/1920.0.1920.1034/0.0.1920.1034@0.0.1920.1034" timestamp="1611264135101" />
+    <state width="1877" height="280" key="GridCell.Tab.1.bottom" timestamp="1608216071224">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.1.bottom/0.0.1920.1034@0.0.1920.1034" timestamp="1608216071224" />
+    <state width="1877" height="280" key="GridCell.Tab.1.center" timestamp="1608216071224">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.1.center/0.0.1920.1034@0.0.1920.1034" timestamp="1608216071224" />
+    <state width="1877" height="280" key="GridCell.Tab.1.left" timestamp="1608216071224">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.1.left/0.0.1920.1034@0.0.1920.1034" timestamp="1608216071224" />
+    <state width="1877" height="280" key="GridCell.Tab.1.right" timestamp="1608216071224">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state width="1877" height="280" key="GridCell.Tab.1.right/0.0.1920.1034@0.0.1920.1034" timestamp="1608216071224" />
+    <state x="469" y="167" key="SettingsEditor" timestamp="1611324382264">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state x="469" y="167" key="SettingsEditor/0.0.1920.1034@0.0.1920.1034" timestamp="1611324382264" />
+    <state x="631" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1611263336319">
+      <screen x="0" y="0" width="1920" height="1034" />
+    </state>
+    <state x="631" y="235" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1034/0.0.1920.1034@0.0.1920.1034" timestamp="1611263336319" />
+  </component>
+</project>
