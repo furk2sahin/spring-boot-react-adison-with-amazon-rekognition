@@ -29,11 +29,12 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     }
 
     @Override
-    public DetectTextResult detectTexts(MultipartFile image) throws IOException {
+    public List<TextDetection> detectTexts(MultipartFile image) throws IOException {
         DetectTextRequest request = new DetectTextRequest()
                 .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())));
-
-        return amazonClient.detectText(request);
+        DetectTextResult result = amazonClient.detectText(request);
+        List<TextDetection> textDetections = result.getTextDetections();
+        return textDetections;
     }
 
     @Override
