@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ce2103c8-8102-4c5b-b4ec-b20d72d1ebe2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/rest/AmazonRekognitionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/rest/AmazonRekognitionRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/service/AmazonRekognitionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/service/AmazonRekognitionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/service/impl/AmazonRekognitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/service/impl/AmazonRekognitionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +89,8 @@
       <workItem from="1611251333332" duration="10997000" />
       <workItem from="1611323724179" duration="1801000" />
       <workItem from="1611325569895" duration="2912000" />
-      <workItem from="1611516610288" duration="135000" />
+      <workItem from="1611516610288" duration="219000" />
+      <workItem from="1611590430250" duration="3000" />
     </task>
     <servers />
   </component>
