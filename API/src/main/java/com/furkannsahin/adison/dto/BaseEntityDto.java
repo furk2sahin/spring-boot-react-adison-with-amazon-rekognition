@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = false)
+
 @Data
 @MappedSuperclass
 public class BaseEntityDto implements Serializable {

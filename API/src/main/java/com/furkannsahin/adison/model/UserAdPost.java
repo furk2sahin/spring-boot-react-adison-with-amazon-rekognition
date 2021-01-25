@@ -2,10 +2,12 @@ package com.furkannsahin.adison.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 @AllArgsConstructor

@@ -8,8 +8,6 @@ import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
-
-@EqualsAndHashCode(callSuper = false)
 @Data
 @MappedSuperclass
 public class BaseEntity implements Serializable {
