@@ -1,10 +1,8 @@
-package com.furkannsahin.adison.model;
+package com.furkannsahin.adison.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,11 +10,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @Data
 @MappedSuperclass
-public class BaseEntity implements Serializable {
-    @CreationTimestamp
+public class BaseEntityDto implements Serializable {
     private Date createDate;
-
-    @Lob
     private String image;
     private String description;
 }
