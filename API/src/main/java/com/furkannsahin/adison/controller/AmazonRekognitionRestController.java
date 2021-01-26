@@ -1,7 +1,8 @@
-package com.furkannsahin.adison.rest;
+package com.furkannsahin.adison.controller;
 
 import com.amazonaws.services.rekognition.model.*;
 import com.furkannsahin.adison.service.AmazonRekognitionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,7 @@ public class AmazonRekognitionRestController {
 
     private AmazonRekognitionService amazonRekognitionService;
 
+    @Autowired
     public AmazonRekognitionRestController(AmazonRekognitionService amazonRekognitionService) {
         this.amazonRekognitionService = amazonRekognitionService;
     }
@@ -75,8 +77,8 @@ public class AmazonRekognitionRestController {
     @PostMapping("/collection/search-faces")
     public ResponseEntity<SearchFacesByImageResult> searchFacesInCollection(@RequestParam("collectionId") String collectionId,
                                                                      @RequestParam("image") MultipartFile image)  throws IOException{
-        Image image1 = new Image().withBytes(ByteBuffer.wrap(image.getBytes()));
-        return ResponseEntity.ok(amazonRekognitionService.searchFacesInCollection(collectionId, image1));
+        Image amazonImage = new Image().withBytes(ByteBuffer.wrap(image.getBytes()));
+        return ResponseEntity.ok(amazonRekognitionService.searchFacesInCollection(collectionId, amazonImage));
     }
 
     @PostMapping("/collection/get-face-count")
