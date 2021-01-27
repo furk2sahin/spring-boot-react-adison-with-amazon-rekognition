@@ -1,16 +1,13 @@
 package com.furkannsahin.adison.controller;
 
-import com.amazonaws.services.rekognition.model.*;
+import com.furkannsahin.adison.request.AmazonRekognitionImageRequest;
 import com.furkannsahin.adison.response.*;
 import com.furkannsahin.adison.service.AmazonRekognitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -24,18 +21,18 @@ public class AmazonRekognitionRestController {
     }
 
     @PostMapping("/images/detect-labels")
-    public ResponseEntity<AmazonDetectLabelsResponse> detectLabels(@RequestParam MultipartFile image) throws IOException {
-        return ResponseEntity.ok(new AmazonDetectLabelsResponse(amazonRekognitionService.detectLabels(image)));
+    public ResponseEntity<AmazonDetectLabelsResponse> detectLabels(@RequestBody AmazonRekognitionImageRequest imageRequest) {
+        return ResponseEntity.ok(new AmazonDetectLabelsResponse(amazonRekognitionService.detectLabels(imageRequest.getBase64Image())));
     }
 
     @PostMapping("/images/detect-texts")
-    public ResponseEntity<AmazonTextDetectionListResponse> detectTexts(@RequestParam MultipartFile image) throws IOException {
-        return ResponseEntity.ok(new AmazonTextDetectionListResponse(amazonRekognitionService.detectTexts(image)));
+    public ResponseEntity<AmazonTextDetectionListResponse> detectTexts(@RequestBody AmazonRekognitionImageRequest imageRequest) {
+        return ResponseEntity.ok(new AmazonTextDetectionListResponse(amazonRekognitionService.detectTexts(imageRequest.getBase64Image())));
     }
 
     @PostMapping("/images/detect-faces")
-    public ResponseEntity<AmazonDetectFacesResponse> detectFaces(@RequestParam MultipartFile image) throws IOException {
-        return ResponseEntity.ok(new AmazonDetectFacesResponse(amazonRekognitionService.detectFaces(image)));
+    public ResponseEntity<AmazonDetectFacesResponse> detectFaces(@RequestBody AmazonRekognitionImageRequest imageRequest)  {
+        return ResponseEntity.ok(new AmazonDetectFacesResponse(amazonRekognitionService.detectFaces(imageRequest.getBase64Image())));
     }
 
     // -> Collection operations
@@ -61,8 +58,8 @@ public class AmazonRekognitionRestController {
     }
 
     @PostMapping("/collection/index-faces/{id}")
-    public ResponseEntity<AmazonIndexFacesResponse> indexFaces(@RequestParam MultipartFile image, @RequestParam("collectionId") String collectionId, @PathVariable("id") Long userId) throws IOException {
-        return ResponseEntity.ok(new AmazonIndexFacesResponse(amazonRekognitionService.addFacesToCollection(image, collectionId, userId)));
+    public ResponseEntity<AmazonIndexFacesResponse> indexFaces(@RequestBody AmazonRekognitionImageRequest imageRequest, @RequestParam("collectionId") String collectionId, @PathVariable("id") Long userId) throws IOException {
+        return ResponseEntity.ok(new AmazonIndexFacesResponse(amazonRekognitionService.addFacesToCollection(imageRequest.getBase64Image(), collectionId, userId)));
     }
 
     @GetMapping("/collection/list-faces")
@@ -77,19 +74,18 @@ public class AmazonRekognitionRestController {
 
     @PostMapping("/collection/search-faces")
     public ResponseEntity<AmazonSearchFacesByImageResponse> searchFacesInCollection(@RequestParam("collectionId") String collectionId,
-                                                                     @RequestParam("image") MultipartFile image)  throws IOException{
-        Image amazonImage = new Image().withBytes(ByteBuffer.wrap(image.getBytes()));
-        return ResponseEntity.ok(new AmazonSearchFacesByImageResponse(amazonRekognitionService.searchFacesInCollection(collectionId, amazonImage)));
+                                                                                    @RequestBody AmazonRekognitionImageRequest imageRequest) {
+        return ResponseEntity.ok(new AmazonSearchFacesByImageResponse(amazonRekognitionService.searchFacesInCollection(collectionId, imageRequest.getBase64Image())));
     }
 
     @PostMapping("/collection/get-face-count")
-    public ResponseEntity<Integer> getFaceCount(@RequestParam MultipartFile image) throws IOException {
-        return ResponseEntity.ok(amazonRekognitionService.getFaceCount(image));
+    public ResponseEntity<Integer> getFaceCount(@RequestBody AmazonRekognitionImageRequest imageRequest) {
+        return ResponseEntity.ok(amazonRekognitionService.getFaceCount(imageRequest.getBase64Image()));
     }
 
     @PostMapping("/collection/get-face-user-id")
-    public ResponseEntity<Long> getFaceUserId(@RequestParam("collectionId") String collectionId, @RequestParam MultipartFile image) throws IOException {
-        return ResponseEntity.ok(amazonRekognitionService.getMatchedFaceUserId(collectionId, image));
+    public ResponseEntity<Long> getFaceUserId(@RequestParam("collectionId") String collectionId, @RequestBody AmazonRekognitionImageRequest imageRequest) {
+        return ResponseEntity.ok(amazonRekognitionService.getMatchedFaceUserId(collectionId, imageRequest.getBase64Image()));
     }
 
     @GetMapping("/collection/get-face-id-by-user-id/{id}")

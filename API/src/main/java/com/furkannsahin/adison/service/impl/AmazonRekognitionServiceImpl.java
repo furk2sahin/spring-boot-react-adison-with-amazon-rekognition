@@ -3,6 +3,7 @@ package com.furkannsahin.adison.service.impl;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.model.*;
 import com.furkannsahin.adison.service.AmazonRekognitionService;
+import com.furkannsahin.adison.util.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     private AmazonRekognition amazonClient;
+    private ImageConverter imageConverter = new ImageConverter();
 
     @Autowired
     public void setAmazonClient(AmazonRekognition amazonClient) {
@@ -21,26 +23,26 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     }
 
     @Override
-    public DetectLabelsResult detectLabels(MultipartFile image) throws IOException {
+    public DetectLabelsResult detectLabels(String base64Image) {
         DetectLabelsRequest request = new DetectLabelsRequest()
-                .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())));
+                .withImage(imageConverter.base64ToImage(base64Image));
 
         return amazonClient.detectLabels(request);
     }
 
     @Override
-    public List<TextDetection> detectTexts(MultipartFile image) throws IOException {
+    public List<TextDetection> detectTexts(String base64Image) {
         DetectTextRequest request = new DetectTextRequest()
-                .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())));
+                .withImage(imageConverter.base64ToImage(base64Image));
         DetectTextResult result = amazonClient.detectText(request);
         List<TextDetection> textDetections = result.getTextDetections();
         return textDetections;
     }
 
     @Override
-    public DetectFacesResult detectFaces(MultipartFile image) throws IOException {
+    public DetectFacesResult detectFaces(String base64Image){
         DetectFacesRequest request = new DetectFacesRequest()
-                .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())))
+                .withImage(imageConverter.base64ToImage(base64Image))
                 .withAttributes(Attribute.ALL);
 
         return amazonClient.detectFaces(request);
@@ -81,9 +83,9 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     }
 
     @Override
-    public IndexFacesResult addFacesToCollection(MultipartFile image, String collectionId, Long userId) throws IOException {
+    public IndexFacesResult addFacesToCollection(String base64Image, String collectionId, Long userId){
         IndexFacesRequest request = new IndexFacesRequest()
-                .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())))
+                .withImage(imageConverter.base64ToImage(base64Image))
                 .withQualityFilter(QualityFilter.AUTO)
                 .withExternalImageId(userId.toString())
                 .withCollectionId(collectionId)
@@ -108,31 +110,31 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     }
 
     @Override
-    public SearchFacesByImageResult searchFacesInCollection(String collectionId, Image image) {
+    public SearchFacesByImageResult searchFacesInCollection(String collectionId, String base64Image) {
         SearchFacesByImageRequest request = new SearchFacesByImageRequest()
                 .withQualityFilter(QualityFilter.AUTO)
                 .withCollectionId(collectionId)
-                .withImage(image)
+                .withImage(imageConverter.base64ToImage(base64Image))
                 .withFaceMatchThreshold(70F);
         SearchFacesByImageResult result = amazonClient.searchFacesByImage(request);
         return result;
     }
 
     @Override
-    public Integer getFaceCount(MultipartFile image) throws IOException {
+    public Integer getFaceCount(String base64Image) {
         DetectFacesRequest request = new DetectFacesRequest()
-                .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())));
+                .withImage(imageConverter.base64ToImage(base64Image));
 
         DetectFacesResult result = amazonClient.detectFaces(request);
         return result.getFaceDetails().size();
     }
 
     @Override
-    public Long getMatchedFaceUserId(String collectionId, MultipartFile image) throws IOException{
+    public Long getMatchedFaceUserId(String collectionId, String base64Image) {
         SearchFacesByImageRequest request = new SearchFacesByImageRequest()
                 .withQualityFilter(QualityFilter.AUTO)
                 .withCollectionId(collectionId)
-                .withImage(new Image().withBytes(ByteBuffer.wrap(image.getBytes())))
+                .withImage(imageConverter.base64ToImage(base64Image))
                 .withFaceMatchThreshold(70F)
                 .withMaxFaces(1);
         SearchFacesByImageResult result = amazonClient.searchFacesByImage(request);
