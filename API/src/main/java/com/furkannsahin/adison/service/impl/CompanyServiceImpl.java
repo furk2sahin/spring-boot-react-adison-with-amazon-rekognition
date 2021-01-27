@@ -3,7 +3,9 @@ package com.furkannsahin.adison.service.impl;
 import com.furkannsahin.adison.dto.CompanyDto;
 import com.furkannsahin.adison.mapper.CompanyMapper;
 import com.furkannsahin.adison.model.Company;
+import com.furkannsahin.adison.model.User;
 import com.furkannsahin.adison.repository.CompanyRepository;
+import com.furkannsahin.adison.repository.UserRepository;
 import com.furkannsahin.adison.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.List;
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final UserRepository userRepository;
     private final CompanyMapper companyMapper;
 
     @Override
@@ -29,8 +32,16 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyDto addCompany(CompanyDto companyDto) {
-        Company company = companyMapper.toCompany(companyDto);
-        return companyMapper.toCompanyDto(companyRepository.save(company));
+        Company companyControl = companyRepository.findByUserId(companyDto.getUserDto().getId()).orElse(null);
+        if(companyControl == null){
+            Company company = companyMapper.toCompany(companyDto);
+            User user = userRepository.findById(companyDto.getUserDto().getId()).orElse(null);
+            if(user != null){
+                company.setUser(user);
+                return companyMapper.toCompanyDto(companyRepository.save(company));
+            }
+        }
+        return null;
     }
 
     @Override

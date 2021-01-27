@@ -1,10 +1,7 @@
 package com.furkannsahin.adison.dto;
 
-import com.furkannsahin.adison.model.Company;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +10,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties("postsDto")
 public class AdDto extends BaseEntityDto{
     private Long id;
     private String requiredWord;
     private boolean expired;
-    private Company company;
+    private CompanyDto companyDto;
     private List<UserAdPostDto> postsDto = new ArrayList<>();
 }

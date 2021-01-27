@@ -1,10 +1,7 @@
 package com.furkannsahin.adison.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,10 +12,11 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"company", "posts"})
 public class User extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userGenerator")
-    @SequenceGenerator(name = "userGenerator", sequenceName = "userSequence")
+    @SequenceGenerator(name = "userGenerator", sequenceName = "userSequence", allocationSize = 1)
     @Column(updatable = false, nullable = false)
     private Long id;
 
@@ -40,11 +38,9 @@ public class User extends BaseEntity{
     private String userType;
     private boolean active;
 
-    @JsonIgnoreProperties
-    @OneToOne(mappedBy = "user", targetEntity = Company.class, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Company company;
 
-    @JsonIgnoreProperties
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = UserAdPost.class)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserAdPost> posts = new ArrayList<>();
 }

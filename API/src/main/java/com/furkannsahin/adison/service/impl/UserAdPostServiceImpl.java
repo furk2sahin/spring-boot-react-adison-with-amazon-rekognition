@@ -2,8 +2,12 @@ package com.furkannsahin.adison.service.impl;
 
 import com.furkannsahin.adison.dto.UserAdPostDto;
 import com.furkannsahin.adison.mapper.UserAdPostMapper;
+import com.furkannsahin.adison.model.Ad;
+import com.furkannsahin.adison.model.User;
 import com.furkannsahin.adison.model.UserAdPost;
+import com.furkannsahin.adison.repository.AdRepository;
 import com.furkannsahin.adison.repository.UserAdPostRepository;
+import com.furkannsahin.adison.repository.UserRepository;
 import com.furkannsahin.adison.service.UserAdPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +20,8 @@ public class UserAdPostServiceImpl implements UserAdPostService {
 
     private final UserAdPostRepository userAdPostRepository;
     private final UserAdPostMapper userAdPostMapper;
-
+    private final AdRepository adRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<UserAdPostDto> getAllUserAdPosts() {
@@ -31,7 +36,14 @@ public class UserAdPostServiceImpl implements UserAdPostService {
     @Override
     public UserAdPostDto addUserAdPost(UserAdPostDto userAdPostDto) {
         UserAdPost userAdPost = userAdPostMapper.toUserAdPost(userAdPostDto);
-        return userAdPostMapper.toUserAdPostDto(userAdPostRepository.save(userAdPost));
+        User user = userRepository.findById(userAdPostDto.getUserDto().getId()).orElse(null);
+        Ad ad = adRepository.findById(userAdPostDto.getAdDto().getId()).orElse(null);
+        if(user != null && ad != null){
+            userAdPost.setUser(user);
+            userAdPost.setAd(ad);
+            return userAdPostMapper.toUserAdPostDto(userAdPostRepository.save(userAdPost));
+        }
+        return null;
     }
 
     @Override
@@ -40,10 +52,9 @@ public class UserAdPostServiceImpl implements UserAdPostService {
         UserAdPost userToUpdate = userAdPostRepository.getOne(id);
         userToUpdate.setAccepted(userAdPost.isAccepted());
         userToUpdate.setActive(userAdPost.isActive());
-        userToUpdate.setAd(userAdPost.getAd());
         userToUpdate.setDescription(userAdPost.getDescription());
         userToUpdate.setImage(userAdPost.getImage());
-        return userAdPostMapper.toUserAdPostDto(userAdPost);
+        return userAdPostMapper.toUserAdPostDto(userAdPostRepository.save(userToUpdate));
     }
 
     @Override

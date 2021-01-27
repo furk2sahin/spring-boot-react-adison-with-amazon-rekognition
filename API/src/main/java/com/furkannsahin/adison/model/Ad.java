@@ -1,10 +1,7 @@
 package com.furkannsahin.adison.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,18 +15,19 @@ import java.util.List;
 public class Ad extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "adsGenerator")
-    @SequenceGenerator(name = "adsGenerator", sequenceName = "adsSequence")
+    @SequenceGenerator(name = "adsGenerator", sequenceName = "adsSequence", allocationSize = 1)
     @Column(updatable = false, nullable = false)
     private Long id;
 
+    @Column(nullable = false)
     private String requiredWord;
     private boolean expired;
 
-    @ManyToOne(cascade = CascadeType.ALL,  targetEntity = Company.class)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Company company;
 
-    @JsonIgnoreProperties
-    @OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, targetEntity = UserAdPost.class)
+    @JsonIgnore
+    @OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
     private List<UserAdPost> posts = new ArrayList<>();
 }
