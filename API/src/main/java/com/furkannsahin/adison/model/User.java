@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"company", "posts"})
+@JsonIgnoreProperties({"company", "posts", "roles"})
 public class User extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userGenerator")
@@ -34,7 +34,6 @@ public class User extends BaseEntity{
     @Column(nullable = false)
     private String phone;
 
-    private String roles;
     private String userType;
     private boolean active;
 
@@ -43,4 +42,8 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserAdPost> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserRole> roles = new ArrayList<>();
+
 }

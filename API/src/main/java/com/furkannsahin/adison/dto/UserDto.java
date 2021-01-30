@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"postsDto", "companyDto"})
+@JsonIgnoreProperties({"postsDto", "companyDto", "rolesDto"})
 public class UserDto extends BaseEntityDto{
     private Long id;
     private String fullName;
@@ -18,9 +18,9 @@ public class UserDto extends BaseEntityDto{
     private String email;
     private String password;
     private String phone;
-    private String roles;
     private String userType;
     private boolean active;
     private CompanyDto companyDto;
     private List<UserAdPostDto> postsDto = new ArrayList<>();
+    private UserRoleDto rolesDto;
 }

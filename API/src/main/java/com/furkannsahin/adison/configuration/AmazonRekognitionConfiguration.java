@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class AwsRekognitionConfiguration {
+public class AmazonRekognitionConfiguration {
 
     @Value("${aws.access-key}")
     private String accessKey;
