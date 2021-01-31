@@ -17,7 +17,7 @@ public interface UserRoleMapper {
 
     @Named("toUserRole")
     @Mapping(target = "user", source = "userDto")
-    UserRole toUserRole(UserRoleDto UserRoleDto);
+    UserRole toUserRole(UserRoleDto userRoleDto);
 
     @IterableMapping(qualifiedByName = "toUserRoleDtos")
     List<UserRoleDto> toUserRoleDtos(List<UserRole> userRoles);

@@ -10,6 +10,7 @@ import com.furkannsahin.adison.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,8 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public List<UserRoleDto> getUserRoleByUserId(Long userId) {
-        return userRoleMapper.toUserRoleDtos(userRoleRepository.findAllByUserId(userId).get());
+        List<UserRole> roles = userRoleRepository.findAllByUserId(userId).orElse(new ArrayList<>());
+        return userRoleMapper.toUserRoleDtos(roles);
     }
 
     @Override
