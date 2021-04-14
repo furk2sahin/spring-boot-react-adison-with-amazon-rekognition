@@ -42,8 +42,4 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserAdPost> posts = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserRole> roles = new ArrayList<>();
-
 }

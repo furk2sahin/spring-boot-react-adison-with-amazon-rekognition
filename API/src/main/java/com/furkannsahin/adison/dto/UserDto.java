@@ -22,5 +22,4 @@ public class UserDto extends BaseEntityDto{
     private boolean active;
     private CompanyDto companyDto;
     private List<UserAdPostDto> postsDto = new ArrayList<>();
-    private UserRoleDto rolesDto;
 }

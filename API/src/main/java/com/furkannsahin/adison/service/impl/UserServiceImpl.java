@@ -4,7 +4,6 @@ import com.furkannsahin.adison.dto.UserDto;
 import com.furkannsahin.adison.mapper.UserMapper;
 import com.furkannsahin.adison.model.User;
 import com.furkannsahin.adison.repository.UserRepository;
-import com.furkannsahin.adison.repository.UserRoleRepository;
 import com.furkannsahin.adison.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserRoleRepository userRolesRepository;
     private final UserMapper userMapper;
 
     @Override

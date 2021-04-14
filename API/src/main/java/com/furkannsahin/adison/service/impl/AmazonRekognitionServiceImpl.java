@@ -6,16 +6,15 @@ import com.furkannsahin.adison.service.AmazonRekognitionService;
 import com.furkannsahin.adison.util.ImageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.List;
 
 @Service
 public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
-    private AmazonRekognition amazonClient;
+
     private ImageConverter imageConverter = new ImageConverter();
+
+    private AmazonRekognition amazonClient;
 
     @Autowired
     public void setAmazonClient(AmazonRekognition amazonClient) {
@@ -23,21 +22,36 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     }
 
     @Override
+    public List<TextDetection> detectTexts(String base64Image) {
+        DetectTextRequest request = new DetectTextRequest()
+                .withImage(imageConverter.base64ToImage(base64Image));
+        List<TextDetection> textDetections;
+
+        try{
+            DetectTextResult detectTextResult = amazonClient.detectText(request);
+            textDetections = detectTextResult.getTextDetections();
+        } catch (AmazonRekognitionException e){
+            return null;
+        }
+        return textDetections;
+    }
+
+    @Override
     public DetectLabelsResult detectLabels(String base64Image) {
         DetectLabelsRequest request = new DetectLabelsRequest()
                 .withImage(imageConverter.base64ToImage(base64Image));
 
-        return amazonClient.detectLabels(request);
+        DetectLabelsResult detectLabelsResult;
+
+        try{
+            detectLabelsResult = amazonClient.detectLabels(request);
+        } catch (AmazonRekognitionException e){
+            return null;
+        }
+        return detectLabelsResult;
     }
 
-    @Override
-    public List<TextDetection> detectTexts(String base64Image) {
-        DetectTextRequest request = new DetectTextRequest()
-                .withImage(imageConverter.base64ToImage(base64Image));
-        DetectTextResult result = amazonClient.detectText(request);
-        List<TextDetection> textDetections = result.getTextDetections();
-        return textDetections;
-    }
+
 
     @Override
     public DetectFacesResult detectFaces(String base64Image){
@@ -45,7 +59,15 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
                 .withImage(imageConverter.base64ToImage(base64Image))
                 .withAttributes(Attribute.ALL);
 
-        return amazonClient.detectFaces(request);
+        DetectFacesResult detectFacesResult;
+
+        try{
+            detectFacesResult = amazonClient.detectFaces(request);
+        } catch (AmazonRekognitionException e){
+            return null;
+        }
+
+        return detectFacesResult;
     }
 
     // Collection operations
@@ -62,8 +84,13 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     public CreateCollectionResult createCollection(String collectionName) {
         CreateCollectionRequest request = new CreateCollectionRequest()
                 .withCollectionId(collectionName);
-
-        return amazonClient.createCollection(request);
+        CreateCollectionResult createCollectionResult;
+        try{
+            createCollectionResult = amazonClient.createCollection(request);
+        } catch (ResourceAlreadyExistsException e){
+            return null;
+        }
+        return createCollectionResult;
     }
 
     @Override
@@ -71,7 +98,15 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
         DeleteCollectionRequest request = new DeleteCollectionRequest()
                 .withCollectionId(collectionName);
 
-        return amazonClient.deleteCollection(request);
+        DeleteCollectionResult  deleteCollectionResult;
+
+        try{
+            deleteCollectionResult = amazonClient.deleteCollection(request);
+        } catch (ResourceNotFoundException e){
+            return null;
+        }
+
+        return deleteCollectionResult;
     }
 
     @Override
@@ -79,7 +114,15 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
         DescribeCollectionRequest request = new DescribeCollectionRequest()
                 .withCollectionId(collectionName);
 
-        return amazonClient.describeCollection(request);
+        DescribeCollectionResult describeCollectionResult;
+
+        try{
+            describeCollectionResult = amazonClient.describeCollection(request);
+        } catch (ResourceNotFoundException e){
+            return null;
+        }
+
+        return describeCollectionResult;
     }
 
     @Override
@@ -90,14 +133,34 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
                 .withExternalImageId(userId.toString())
                 .withCollectionId(collectionId)
                 .withDetectionAttributes("ALL");
-        return amazonClient.indexFaces(request);
+
+        IndexFacesResult indexFacesResult;
+
+        try{
+            indexFacesResult = amazonClient.indexFaces(request);
+        } catch (ResourceNotFoundException e){
+            return null;
+        }
+        catch (AmazonRekognitionException e){
+            return null;
+        }
+
+        return indexFacesResult;
     }
 
     @Override
     public ListFacesResult listFacesInCollection(String collectionId) {
         ListFacesRequest request = new ListFacesRequest()
                 .withCollectionId(collectionId);
-        return amazonClient.listFaces(request);
+
+        ListFacesResult listFacesResult;
+
+        try{
+            listFacesResult = amazonClient.listFaces(request);
+        } catch (ResourceNotFoundException e){
+            return null;
+        }
+        return listFacesResult;
     }
 
     @Override
@@ -106,18 +169,38 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
         DeleteFacesRequest request = new DeleteFacesRequest()
                 .withCollectionId(collectionId)
                 .withFaceIds(faces);
-        return amazonClient.deleteFaces(request);
+
+        DeleteFacesResult deleteFacesResult;
+
+        try{
+            deleteFacesResult = amazonClient.deleteFaces(request);
+        } catch (ResourceNotFoundException e){
+            return null;
+        }
+        catch (AmazonRekognitionException e){
+            return null;
+        }
+
+        return deleteFacesResult;
     }
 
     @Override
     public SearchFacesByImageResult searchFacesInCollection(String collectionId, String base64Image) {
         SearchFacesByImageRequest request = new SearchFacesByImageRequest()
-                .withQualityFilter(QualityFilter.AUTO)
-                .withCollectionId(collectionId)
-                .withImage(imageConverter.base64ToImage(base64Image))
-                .withFaceMatchThreshold(70F);
-        SearchFacesByImageResult result = amazonClient.searchFacesByImage(request);
-        return result;
+            .withQualityFilter(QualityFilter.AUTO)
+            .withCollectionId(collectionId)
+            .withImage(imageConverter.base64ToImage(base64Image))
+            .withFaceMatchThreshold(70F);
+
+        SearchFacesByImageResult searchFacesByImageResult;
+        try{
+            searchFacesByImageResult = amazonClient.searchFacesByImage(request);
+        } catch (ResourceNotFoundException e){
+            return null;
+        } catch (AmazonRekognitionException e){
+            return null;
+        }
+        return searchFacesByImageResult;
     }
 
     @Override
@@ -125,8 +208,16 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
         DetectFacesRequest request = new DetectFacesRequest()
                 .withImage(imageConverter.base64ToImage(base64Image));
 
-        DetectFacesResult result = amazonClient.detectFaces(request);
-        return result.getFaceDetails().size();
+        int faceCount;
+
+        try{
+            DetectFacesResult result = amazonClient.detectFaces(request);
+            faceCount = result.getFaceDetails().size();
+        } catch (AmazonRekognitionException e){
+            return 0;
+        }
+
+        return faceCount;
     }
 
     @Override
@@ -137,20 +228,38 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
                 .withImage(imageConverter.base64ToImage(base64Image))
                 .withFaceMatchThreshold(70F)
                 .withMaxFaces(1);
-        SearchFacesByImageResult result = amazonClient.searchFacesByImage(request);
-        List<FaceMatch> faces = result.getFaceMatches();
+
+        List<FaceMatch> faces;
+
+        try{
+            SearchFacesByImageResult result = amazonClient.searchFacesByImage(request);
+            faces = result.getFaceMatches();
+        } catch (ResourceNotFoundException e){
+            return 0L;
+        } catch (AmazonRekognitionException e){
+            return 0L;
+        }
+
         if(faces.isEmpty())
             return 0L;
         else
-            return Long.parseLong(result.getFaceMatches().get(0).getFace().getExternalImageId());
+            return Long.parseLong(faces.get(0).getFace().getExternalImageId());
     }
 
     @Override
     public String getFaceIdByUserId(String collectionId, Long userId) {
         ListFacesRequest request = new ListFacesRequest()
                 .withCollectionId(collectionId);
-        ListFacesResult result = amazonClient.listFaces(request);
-        List<Face> faces = result.getFaces();
+
+        List<Face> faces;
+
+        try{
+            ListFacesResult result = amazonClient.listFaces(request);
+            faces = result.getFaces();
+        } catch (ResourceNotFoundException e){
+            return null;
+        }
+
         for(Face face : faces){
             if(Long.parseLong(face.getExternalImageId()) == userId){
                 return face.getFaceId();

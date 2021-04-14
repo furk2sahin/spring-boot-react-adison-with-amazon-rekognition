@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce2103c8-8102-4c5b-b4ec-b20d72d1ebe2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/dto/UserRoleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/dto/UserRoleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/repository/AdRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/repository/AdRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/service/impl/AmazonRekognitionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/service/impl/AmazonRekognitionServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +95,9 @@
       <workItem from="1611590430250" duration="3000" />
       <workItem from="1611598375609" duration="1000" />
       <workItem from="1612029701293" duration="27000" />
+      <workItem from="1612940354359" duration="73000" />
+      <workItem from="1618324609661" duration="139000" />
+      <workItem from="1618324787538" duration="221000" />
     </task>
     <servers />
   </component>

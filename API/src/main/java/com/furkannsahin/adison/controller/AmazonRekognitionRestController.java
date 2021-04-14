@@ -42,38 +42,38 @@ public class AmazonRekognitionRestController {
         return ResponseEntity.ok(new AmazonListCollectionsResponse(amazonRekognitionService.listCollections()));
     }
 
-    @PostMapping("/collection")
-    public ResponseEntity<AmazonCreateCollectionResponse> createCollection(@RequestParam("collectionName") String collectionName) {
+    @PostMapping("/collection/{collectionName}")
+    public ResponseEntity<AmazonCreateCollectionResponse> createCollection(@PathVariable("collectionName") String collectionName) {
         return ResponseEntity.ok(new AmazonCreateCollectionResponse(amazonRekognitionService.createCollection(collectionName)));
     }
 
-    @DeleteMapping("/collection")
-    public ResponseEntity<AmazonDeleteCollectionResponse> deleteCollection(@RequestParam("collectionName") String collectionName){
+    @DeleteMapping("/collection/{collectionName}")
+    public ResponseEntity<AmazonDeleteCollectionResponse> deleteCollection(@PathVariable("collectionName") String collectionName){
         return ResponseEntity.ok(new AmazonDeleteCollectionResponse(amazonRekognitionService.deleteCollection(collectionName)));
     }
 
-    @GetMapping("/collection/describe-collection")
-    public ResponseEntity<AmazonDescribeCollectionResponse> describeCollection(@RequestParam("collectionName") String collectionName){
+    @GetMapping("/collection/describe-collection/{collectionName}")
+    public ResponseEntity<AmazonDescribeCollectionResponse> describeCollection(@PathVariable("collectionName") String collectionName){
         return ResponseEntity.ok(new AmazonDescribeCollectionResponse(amazonRekognitionService.describeCollection(collectionName)));
     }
 
-    @PostMapping("/collection/index-faces/{id}")
-    public ResponseEntity<AmazonIndexFacesResponse> indexFaces(@RequestBody AmazonRekognitionImageRequest imageRequest, @RequestParam("collectionId") String collectionId, @PathVariable("id") Long userId) throws IOException {
+    @PostMapping("/collection/index-faces/{collectionId}/{userId}")
+    public ResponseEntity<AmazonIndexFacesResponse> indexFaces(@RequestBody AmazonRekognitionImageRequest imageRequest, @PathVariable("collectionId") String collectionId, @PathVariable("userId") Long userId) throws IOException {
         return ResponseEntity.ok(new AmazonIndexFacesResponse(amazonRekognitionService.addFacesToCollection(imageRequest.getBase64Image(), collectionId, userId)));
     }
 
-    @GetMapping("/collection/list-faces")
-    public ResponseEntity<AmazonListFacesResponse> listFacesInCollection(@RequestParam("collectionId") String collectionId) {
+    @GetMapping("/collection/list-faces/{collectionId}")
+    public ResponseEntity<AmazonListFacesResponse> listFacesInCollection(@PathVariable("collectionId") String collectionId) {
         return ResponseEntity.ok(new AmazonListFacesResponse(amazonRekognitionService.listFacesInCollection(collectionId)));
     }
 
-    @DeleteMapping("/collection/delete-faces")
-    public ResponseEntity<AmazonDeleteFacesResponse> deleteFacesInCollection(@RequestParam("collectionId") String collectionId, @RequestParam("faceId") String faceId) {
+    @DeleteMapping("/collection/delete-faces/{collectionId}/{faceId}")
+    public ResponseEntity<AmazonDeleteFacesResponse> deleteFacesInCollection(@PathVariable("collectionId") String collectionId, @PathVariable("faceId") String faceId) {
         return ResponseEntity.ok(new AmazonDeleteFacesResponse(amazonRekognitionService.deleteFacesInCollection(collectionId, faceId)));
     }
 
-    @PostMapping("/collection/search-faces")
-    public ResponseEntity<AmazonSearchFacesByImageResponse> searchFacesInCollection(@RequestParam("collectionId") String collectionId,
+    @PostMapping("/collection/search-faces/{collectionId}")
+    public ResponseEntity<AmazonSearchFacesByImageResponse> searchFacesInCollection(@PathVariable("collectionId") String collectionId,
                                                                                     @RequestBody AmazonRekognitionImageRequest imageRequest) {
         return ResponseEntity.ok(new AmazonSearchFacesByImageResponse(amazonRekognitionService.searchFacesInCollection(collectionId, imageRequest.getBase64Image())));
     }
@@ -83,13 +83,13 @@ public class AmazonRekognitionRestController {
         return ResponseEntity.ok(amazonRekognitionService.getFaceCount(imageRequest.getBase64Image()));
     }
 
-    @PostMapping("/collection/get-face-user-id")
-    public ResponseEntity<Long> getFaceUserId(@RequestParam("collectionId") String collectionId, @RequestBody AmazonRekognitionImageRequest imageRequest) {
+    @PostMapping("/collection/get-face-user-id/{collectionId}")
+    public ResponseEntity<Long> getFaceUserId(@PathVariable("collectionId") String collectionId, @RequestBody AmazonRekognitionImageRequest imageRequest) {
         return ResponseEntity.ok(amazonRekognitionService.getMatchedFaceUserId(collectionId, imageRequest.getBase64Image()));
     }
 
-    @GetMapping("/collection/get-face-id-by-user-id/{id}")
-    public ResponseEntity<String> getFaceUserId(@RequestParam("collectionId") String collectionId, @PathVariable("id") Long id) {
+    @GetMapping("/collection/get-face-id-by-user-id/{collectionId}/{userId}")
+    public ResponseEntity<String> getFaceUserId(@PathVariable("collectionId") String collectionId, @PathVariable("userId") Long id) {
         return ResponseEntity.ok(amazonRekognitionService.getFaceIdByUserId(collectionId, id));
     }
 }

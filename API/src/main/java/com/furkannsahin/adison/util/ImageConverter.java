@@ -6,7 +6,12 @@ import java.util.Base64;
 
 public class ImageConverter {
     public Image base64ToImage(String base64Str){
-        byte[] imageArray = Base64.getDecoder().decode(base64Str);
-        return new Image().withBytes(ByteBuffer.wrap(imageArray));
+        try{
+            byte[] imageArray = Base64.getDecoder().decode(base64Str);
+            return new Image().withBytes(ByteBuffer.wrap(imageArray));
+        } catch (IllegalArgumentException e){
+            return null;
+        }
+
     }
 }
