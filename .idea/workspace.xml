@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ce2103c8-8102-4c5b-b4ec-b20d72d1ebe2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/API/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/API/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/AdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/AdMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/CompanyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/CompanyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/UserAdPostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/UserAdPostMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/com/furkannsahin/adison/mapper/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,6 +98,7 @@
       <workItem from="1618324609661" duration="139000" />
       <workItem from="1618324787538" duration="221000" />
       <workItem from="1618404480928" duration="8000" />
+      <workItem from="1618428071177" duration="5000" />
     </task>
     <servers />
   </component>
