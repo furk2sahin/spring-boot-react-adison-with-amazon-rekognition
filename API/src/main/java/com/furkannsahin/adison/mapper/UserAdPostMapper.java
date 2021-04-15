@@ -12,13 +12,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UserAdPostMapper {
     @Named("toUserAdPostDto")
-    @Mapping(target = "adDto", source = "ad", ignore = true)
-    @Mapping(target = "userDto", source = "user", ignore = true)
+    @Mapping(target = "adDto", source = "ad")
+    @Mapping(target = "userDto", source = "user")
     UserAdPostDto toUserAdPostDto(UserAdPost userAdPost);
 
     @Named("toUserAdPost")
-    @Mapping(target = "ad", source = "adDto", ignore = true)
-    @Mapping(target = "user", source = "userDto", ignore = true)
+    @Mapping(target = "ad", source = "adDto")
+    @Mapping(target = "user", source = "userDto")
     UserAdPost toUserAdPost(UserAdPostDto userAdPostDto);
 
     @IterableMapping(qualifiedByName = "toUserAdPostDtos")

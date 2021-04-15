@@ -22,11 +22,11 @@ public class UserAdPost extends BaseEntity {
     private boolean accepted;
     private boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_post_ad"))
     private Ad ad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_post_user"))
     private Users user;
 }

@@ -12,13 +12,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CompanyMapper {
     @Named("toCompanyDto")
-    @Mapping(target = "userDto", source = "user", ignore = true)
-    @Mapping(target = "adsDto", source = "ads", ignore = true)
+    @Mapping(target = "userDto", source = "user")
+    @Mapping(target = "adsDto", source = "ads")
     CompanyDto toCompanyDto(Company company);
 
     @Named("toCompany")
-    @Mapping(target = "user", source = "userDto", ignore = true)
-    @Mapping(target = "ads", source = "adsDto", ignore = true)
+    @Mapping(target = "user", source = "userDto")
+    @Mapping(target = "ads", source = "adsDto")
     Company toCompany(CompanyDto companyDto);
 
     @IterableMapping(qualifiedByName = "toCompanyDtos")

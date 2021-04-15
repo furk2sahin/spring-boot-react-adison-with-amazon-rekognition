@@ -12,13 +12,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AdMapper {
     @Named("toAdDto")
-    @Mapping(target = "companyDto", source = "company", ignore = true)
-    @Mapping(target = "postsDto", source = "posts", ignore = true)
+    @Mapping(target = "companyDto", source = "company")
+    @Mapping(target = "postsDto", source = "posts")
     AdDto toAdDto(Ad ad);
 
     @Named("toAd")
-    @Mapping(target = "company", source = "companyDto", ignore = true)
-    @Mapping(target = "posts", source = "postsDto", ignore = true)
+    @Mapping(target = "company", source = "companyDto")
+    @Mapping(target = "posts", source = "postsDto")
     Ad toAd(AdDto adDto);
 
     @IterableMapping(qualifiedByName = "toAdDtos")

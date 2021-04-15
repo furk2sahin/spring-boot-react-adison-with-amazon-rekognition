@@ -29,7 +29,7 @@ public class Company extends BaseEntity {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Ad> ads = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_company_user"))
     private Users user;
 }

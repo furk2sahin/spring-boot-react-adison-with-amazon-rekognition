@@ -26,8 +26,8 @@ public class Ad extends BaseEntity {
     private String requiredWord;
     private boolean expired;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_ad_company"))
     private Company company;
 
     @JsonIgnore
