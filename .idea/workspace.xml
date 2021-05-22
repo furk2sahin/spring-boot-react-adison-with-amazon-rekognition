@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce2103c8-8102-4c5b-b4ec-b20d72d1ebe2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/API/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/API/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/UI/ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/UI/ui/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -39,6 +41,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -99,6 +102,7 @@
       <workItem from="1618324787538" duration="221000" />
       <workItem from="1618404480928" duration="8000" />
       <workItem from="1618428071177" duration="5000" />
+      <workItem from="1621703333131" duration="35000" />
     </task>
     <servers />
   </component>
