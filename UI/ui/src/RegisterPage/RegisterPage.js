@@ -5,10 +5,14 @@ const LoginForm = () => (
     <Grid inverted textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
-                Hesabına giriş yap
+                Kayıt Ol
             </Header>
             <Form size='large'>
                 <Segment stacked >
+                    <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
+                    <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
+                    <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
+                    <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
                     <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' />
                     <Form.Input
                         fluid
@@ -24,7 +28,7 @@ const LoginForm = () => (
                 </Segment>
             </Form>
             <Message>
-                Aramızda yeni misin? <a href='#'>Kayıt ol</a>
+                Hesabın var mı? <a href='#'>Giriş yap</a>
             </Message>
         </Grid.Column>
     </Grid>
