@@ -1,10 +1,12 @@
 import './App.css';
-import Homepage2 from './Homepage/Homepage';
+import Homepage from './Homepage/Homepage';
+import LoginPage from './LoginPage/LoginPage'
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
-    <Homepage2 />
+    //<Homepage />
+    <LoginPage />
   );
 }
 
