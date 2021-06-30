@@ -9,11 +9,11 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class UserRestController {
 
     private UserService userService;
@@ -30,10 +30,7 @@ public class UserRestController {
 
     @PostMapping("/user")
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         try{
-            String cryptedPassword = passwordEncoder.encode(userRequest.getUserDto().getPassword());
-            userRequest.getUserDto().setPassword(cryptedPassword);
             UserResponse userResponse = new UserResponse(userService.addUser(userRequest.getUserDto()));
             return ResponseEntity.ok(userResponse);
         } catch (ConstraintViolationException e){
@@ -77,7 +74,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/user/username/{username}")
+    @GetMapping("/user/{username}")
     public ResponseEntity<UserResponse> getUserByUserName(@PathVariable("username") String userName){
         try{
             UserDto userDto = userService.getUserByUserName(userName);

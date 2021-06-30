@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class AmazonRekognitionRestController {
 
     private AmazonRekognitionService amazonRekognitionService;
@@ -62,6 +63,11 @@ public class AmazonRekognitionRestController {
         return ResponseEntity.ok(new AmazonIndexFacesResponse(amazonRekognitionService.addFacesToCollection(imageRequest.getBase64Image(), collectionId, userId)));
     }
 
+    @PostMapping("/compare-faces")
+    public boolean indexFaces(@RequestBody AmazonRekognitionImageRequest[] imageRequests) {
+          return amazonRekognitionService.compareFaces(imageRequests[0].getBase64Image(), imageRequests[1].getBase64Image());
+    }
+
     @GetMapping("/collection/list-faces/{collectionId}")
     public ResponseEntity<AmazonListFacesResponse> listFacesInCollection(@PathVariable("collectionId") String collectionId) {
         return ResponseEntity.ok(new AmazonListFacesResponse(amazonRekognitionService.listFacesInCollection(collectionId)));
@@ -81,6 +87,11 @@ public class AmazonRekognitionRestController {
     @PostMapping("/collection/get-face-count")
     public ResponseEntity<Integer> getFaceCount(@RequestBody AmazonRekognitionImageRequest imageRequest) {
         return ResponseEntity.ok(amazonRekognitionService.getFaceCount(imageRequest.getBase64Image()));
+    }
+
+    @PostMapping("/collection/get-moderation-labels-count")
+    public ResponseEntity<Integer> getModerationLabelCounts(@RequestBody AmazonRekognitionImageRequest imageRequest) {
+        return ResponseEntity.ok(amazonRekognitionService.getModerationLabelsCount(imageRequest.getBase64Image()));
     }
 
     @PostMapping("/collection/get-face-user-id/{collectionId}")

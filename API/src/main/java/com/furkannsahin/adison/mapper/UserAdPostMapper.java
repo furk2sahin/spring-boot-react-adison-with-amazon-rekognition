@@ -21,6 +21,6 @@ public interface UserAdPostMapper {
     @Mapping(target = "user", source = "userDto")
     UserAdPost toUserAdPost(UserAdPostDto userAdPostDto);
 
-    @IterableMapping(qualifiedByName = "toUserAdPostDtos")
+    @IterableMapping(qualifiedByName = "toUserAdPostDto")
     List<UserAdPostDto> toUserAdPostDtos(List<UserAdPost> userAdPosts);
 }

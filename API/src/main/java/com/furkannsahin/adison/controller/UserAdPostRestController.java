@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class UserAdPostRestController {
 
     private UserAdPostService userAdPostService;

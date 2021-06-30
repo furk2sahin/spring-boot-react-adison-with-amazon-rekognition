@@ -52,8 +52,7 @@ public class UserAdPostServiceImpl implements UserAdPostService {
         UserAdPost userToUpdate = userAdPostRepository.getOne(id);
         userToUpdate.setAccepted(userAdPost.isAccepted());
         userToUpdate.setActive(userAdPost.isActive());
-        userToUpdate.setDescription(userAdPost.getDescription());
-        userToUpdate.setImage(userAdPost.getImage());
+        userToUpdate.setDescription(userAdPost.getDescription())    ;
         return userAdPostMapper.toUserAdPostDto(userAdPostRepository.save(userToUpdate));
     }
 

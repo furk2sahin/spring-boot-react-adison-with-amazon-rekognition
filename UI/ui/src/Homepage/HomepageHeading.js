@@ -1,11 +1,11 @@
 import { Container, Header } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
-const HomepageHeading = ({ mobile }) => (
+const HomepageHeading = ({ mobile, content1, content2 }) => (
     <Container text>
         <Header
             as='h1'
-            content='AdIsOn'
+            content={content1}
             inverted
             style={{
                 fontSize: mobile ? '2em' : '4em',
@@ -16,7 +16,7 @@ const HomepageHeading = ({ mobile }) => (
         />
         <Header
             as='h2'
-            content='Reklam ver. Reklam al.'
+            content={content2}
             inverted
             style={{
                 fontSize: mobile ? '1.5em' : '1.7em',

@@ -1,14 +1,10 @@
 import './App.css';
-import Homepage from './Homepage/Homepage';
-import LoginPage from './LoginPage/LoginPage'
-import RegisterPage from './RegisterPage/RegisterPage'
 import 'semantic-ui-css/semantic.min.css'
+import DashBoard from './DashBoard/DashBoard';
 
 function App() {
   return (
-    <Homepage />
-    //<LoginPage />
-    //<RegisterPage />
+    <DashBoard />
   );
 }
 

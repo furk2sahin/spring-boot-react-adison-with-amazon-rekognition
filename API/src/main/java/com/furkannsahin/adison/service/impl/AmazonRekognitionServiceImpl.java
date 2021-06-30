@@ -221,6 +221,23 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
     }
 
     @Override
+    public Integer getModerationLabelsCount(String base64Image) {
+        DetectModerationLabelsRequest request = new DetectModerationLabelsRequest()
+                .withImage(imageConverter.base64ToImage(base64Image));
+
+        int faceCount;
+
+        try{
+            DetectModerationLabelsResult result = amazonClient.detectModerationLabels(request);
+            faceCount = result.getModerationLabels().size();
+        } catch (AmazonRekognitionException e){
+            return 0;
+        }
+
+        return faceCount;
+    }
+
+    @Override
     public Long getMatchedFaceUserId(String collectionId, String base64Image) {
         SearchFacesByImageRequest request = new SearchFacesByImageRequest()
                 .withQualityFilter(QualityFilter.AUTO)
@@ -244,6 +261,19 @@ public class AmazonRekognitionServiceImpl  implements AmazonRekognitionService {
             return 0L;
         else
             return Long.parseLong(faces.get(0).getFace().getExternalImageId());
+    }
+
+    @Override
+    public boolean compareFaces(String sourceBase64Image, String targetBase64Image) {
+        CompareFacesRequest request = new CompareFacesRequest()
+                .withSourceImage(imageConverter.base64ToImage(sourceBase64Image))
+                .withTargetImage(imageConverter.base64ToImage(targetBase64Image));
+        try{
+            CompareFacesResult result = amazonClient.compareFaces(request);
+            return !result.getFaceMatches().isEmpty();
+        } catch (AmazonRekognitionException e){
+            return false;
+        }
     }
 
     @Override
